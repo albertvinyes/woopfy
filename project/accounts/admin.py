@@ -35,7 +35,7 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
 
-
+admin.site.site_header = 'Woopfy administration'
 admin.site.register(User, UserAdmin)
 admin.site.register(RegularUser)
 
