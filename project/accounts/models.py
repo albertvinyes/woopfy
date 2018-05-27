@@ -97,7 +97,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
 class RegularUserManager(BaseUserManager):
-    def create_user(self, email, name, birthday, sex, password=None):
+    def create_user(self, email, name, birthday, gender, password=None):
         """
         Creates and saves a User with the given email and password.
         """
@@ -106,6 +106,9 @@ class RegularUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
+            name=name,
+            birthday=birthday,
+            gender=gender
         )
 
         user.set_password(password)
@@ -113,8 +116,11 @@ class RegularUserManager(BaseUserManager):
         return user
 
 class RegularUser(AbstractBaseUser):
+    class Meta:
+        ordering = ('email',)
+
     INTEREST_CHOICES = ["1","2","3"]
-    SEX_CHOICES = (
+    GENDER_CHOICES = (
             ('1', 'Female'),
             ('2', 'Male'),
             ('3', 'Other')
@@ -127,8 +133,8 @@ class RegularUser(AbstractBaseUser):
         unique=True,
     )
     name = models.CharField(max_length=255)
-    birthday = models.DateField()
-    sex = models.CharField(max_length=255, choices=SEX_CHOICES)
+    birthday = models.DateField(null=True)
+    gender = models.CharField(max_length=255, choices=GENDER_CHOICES)
     # interests
     confirmed = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
