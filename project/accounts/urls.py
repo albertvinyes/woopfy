@@ -6,8 +6,6 @@ from accounts import views
 urlpatterns = [
     path('', views.RegularUserList.as_view()),
     path('<int:pk>/', views.RegularUserDetail.as_view()),
-#    url(r'^accounts/$', views.RegularUserList.as_view()),
-#    url(r'^accounts/(?P[0-9]+)/$', views.RegularUserDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
