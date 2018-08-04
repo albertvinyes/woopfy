@@ -1,5 +1,7 @@
 from rest_framework import serializers
+from rest_auth import serializers as authSerializers
 from accounts.models import RegularUser
+from django.contrib.auth import authenticate
 
 class RegularUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,3 +23,21 @@ class RegularUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class LoginSerializer(serializers.Serializer):
+    class Meta:
+        model = RegularUser
+
+    email = serializers.EmailField(required=False, allow_blank=True)
+    password = serializers.CharField(style={'input_type': 'password'})
+
+    def validate(self, attrs):
+        mail = attrs.get('email')
+        password = attrs.get('password')
+
+        user = RegularUser.objects.get(email=mail)
+        auth = user.check_password(password)
+
+        print(auth)
+        attrs['user'] = user
+        return attrs

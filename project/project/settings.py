@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken', # new!
+    'rest_auth', # new!
     'accounts',
 ]
+
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,11 +56,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project.urls'
+PROJECT_ROOT = '/home/albert/git/woopfy/project'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_ROOT, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,6 +96,17 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_USER_MODEL = 'accounts.User'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.auth.AdminOrRegularUserBackend',
+)
+
+LOGIN_REDIRECT_URL = '/accounts/test/login/'
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'accounts.serializers.LoginSerializer',
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
