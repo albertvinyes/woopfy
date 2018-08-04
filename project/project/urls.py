@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 import accounts.urls
+import rest_auth.urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include(accounts.urls))
+    path('accounts/', include(accounts.urls)),
+    path('accounts/', include('django.contrib.auth.urls')),
 #    url(r'^', include('accounts.urls')),
 ]
