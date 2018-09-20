@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # new!
     'rest_auth', # new!
     'accounts',
+    'multiselectfield'
 ]
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False

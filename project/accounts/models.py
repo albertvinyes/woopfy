@@ -1,4 +1,5 @@
 from django.db import models
+from multiselectfield import MultiSelectField
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
@@ -121,7 +122,24 @@ class RegularUser(AbstractBaseUser):
     class Meta:
         ordering = ('email',)
 
-    INTEREST_CHOICES = ["1","2","3"]
+    INTEREST_CHOICES = (
+            ('101', 'Cinema'),
+            ('102', 'Theater'),
+            ('103', 'Musicals'),
+            ('104', 'Concerts'),
+            ('105', 'Festivals'),
+            ('106', 'Sports'),
+            ('107', 'Nightlife'),
+            ('201', 'Museums'),
+            ('202', 'Sightseeing'),
+            ('203', 'Photography'),
+            ('301', 'Adventure'),
+            ('302', 'Congresses & Events'),
+            ('303', 'Nightlife'),
+            ('401', 'Food'),
+            ('402', 'Relax'),
+            ('403', 'Shopping')
+    )
     GENDER_CHOICES = (
             ('1', 'Female'),
             ('2', 'Male'),
@@ -136,8 +154,8 @@ class RegularUser(AbstractBaseUser):
     )
     name = models.CharField(max_length=255)
     birthday = models.DateField(null=True)
-    gender = models.CharField(max_length=255, choices=GENDER_CHOICES)
-    # interests
+    gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
+    interests = MultiSelectField(max_length=255, choices=INTEREST_CHOICES, max_choices=5)
     confirmed = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
