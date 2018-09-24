@@ -155,7 +155,7 @@ class RegularUser(AbstractBaseUser):
     name = models.CharField(max_length=255)
     birthday = models.DateField(null=True)
     gender = models.CharField(max_length=12, choices=GENDER_CHOICES)
-    interests = MultiSelectField(max_length=255, choices=INTEREST_CHOICES, max_choices=5)
+    interests = MultiSelectField(max_length=255, choices=INTEREST_CHOICES, max_choices=5, default=INTEREST_CHOICES[0])
     confirmed = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
