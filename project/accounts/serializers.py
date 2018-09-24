@@ -9,12 +9,13 @@ class RegularUserSerializer(serializers.ModelSerializer):
         password = serializers.CharField(
             style={'input_type': 'password'}
         )
-        fields = ('id', 'password', 'email', 'gender', 'birthday', 'confirmed', 'active', 'staff')
+        fields = ('id', 'password', 'email', 'gender', 'interests', 'birthday', 'confirmed', 'active', 'staff')
 
     def create(self, validated_data):
         user = RegularUser(
             email=validated_data['email'],
             gender=validated_data['gender'],
+            interests=validated_data['interests'],
             birthday=validated_data['birthday'],
             confirmed=validated_data['confirmed'],
             active=validated_data['active'],
