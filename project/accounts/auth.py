@@ -1,5 +1,6 @@
 from django.contrib.auth.backends import ModelBackend
 from .models import User, RegularUser
+#from django.shortcuts import get_object_or_404
 
 class AdminOrRegularUserBackend(ModelBackend):
     """
@@ -10,13 +11,14 @@ class AdminOrRegularUserBackend(ModelBackend):
     def authenticate(self, *args, **kwargs):
         id = kwargs.get('username')
         passwd  = kwargs.get('password')
-        user = RegularUser.objects.get(email=id)
-        if user.check_password(passwd):
-            # Yes? return the Django user object
-            return user
-        else:
-            # No? return None - triggers default login failed
-            return None
+        try:
+            user = RegularUser.objects.get(pk=id)
+            if user.check_password(passwd):
+                # Yes? return the Django user object
+                return user
+        except:
+            user = None
+        #comment = get_object_or_404(Comment, pk=comment_id)
         return user
 
     def get_user(self, user_id):
