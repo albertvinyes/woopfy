@@ -1,12 +1,19 @@
 <!-- templates/registration/login.html -->
-<h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  <span style="display:inline-block; width:100px">  Email:</span>
-  <input type="email" name="email" maxlength="100" required>
-  <br>
-  <span style="display:inline-block; width:100px">  Password:</span>
-  <input type="password" name="password" maxlength="100" required>
-  <br>
-  <button type="submit">Login</button>
-</form>
+{% include "base/bootstrap.html" %}
+{% csrf_token %}
+<body>
+  <div class="container">
+    <h1> Welcome</h1>
+    <h2>Login page</h2>
+    <form method="post">
+      {% csrf_token %}
+      <span style="display:inline-block; width:100px">  Email:</span>
+      <input type="email" name="email" maxlength="100" required>
+      <br>
+      <span style="display:inline-block; width:100px">  Password:</span>
+      <input type="password" name="password" maxlength="100" required>
+      <br>
+      <button class="btn btn-info" type="submit">Log in</button>
+    </form>
+  </div>
+</body
