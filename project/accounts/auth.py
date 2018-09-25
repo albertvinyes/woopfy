@@ -12,13 +12,14 @@ class AdminOrRegularUserBackend(ModelBackend):
         id = kwargs.get('username')
         passwd  = kwargs.get('password')
         try:
-            user = RegularUser.objects.get(pk=id)
+            user = RegularUser.objects.get(email=id)
             if user.check_password(passwd):
-                # Yes? return the Django user object
                 return user
         except:
+            user = User.objects.get(email=id)
+            if user.check_password(passwd):
+                return user
             user = None
-        #comment = get_object_or_404(Comment, pk=comment_id)
         return user
 
     def get_user(self, user_id):
