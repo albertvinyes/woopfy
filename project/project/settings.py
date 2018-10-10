@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     'accounts',
     'accommodations',
     'transports',
-    'adventures',
     'activities',
-    'multiselectfield'
+    'multiselectfield',
+    'adventures',
 ]
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'woopfynew',
+        'NAME': 'woopfy2',
         'USER': 'albert',
         'PASSWORD': 'just567',
         'HOST': 'localhost',
