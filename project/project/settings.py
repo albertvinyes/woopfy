@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,7 +45,14 @@ INSTALLED_APPS = [
     'activities',
     'multiselectfield',
     'adventures',
+    'cities_light',
+    'cities_app',
 ]
+
+# Django cities light settings
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['es', 'en', 'cat']
+CITIES_LIGHT_CITY_SOURCES = ['http://download.geonames.org/export/dump/cities500.zip']
+CITIES_LIGHT_APP_NAME = 'cities_app'
 
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 

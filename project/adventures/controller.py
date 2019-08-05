@@ -6,7 +6,6 @@ from transports.models import Transport
 from adventures.models import Adventure
 
 class AdventureController():
-    # TODO: Add 4 edit methods
 
     def filter_by_date_and_location():
         # return if it's not closed
@@ -22,6 +21,18 @@ class AdventureController():
                     date_end=adv_date_end,
                     closed=False)
             return adv.id
+        except:
+            return "Error"
+
+    def edit_adventure(id, adv_name, adv_description, adv_location, adv_date_start,adv_date_end):
+        try:
+            adv = Adventure.filter(pk=id).update(
+                    name=adv_name,
+                    description=adv_description,
+                    location=adv_location,
+                    date_start=adv_date_start,
+                    date_end=adv_date_end)
+            return "Success"
         except:
             return "Error"
 
@@ -41,6 +52,17 @@ class AdventureController():
         except:
             return "Error"
 
+    def edit_activity(id_activity, activity_name, activity_description, activity_start, activity_location):
+        try:
+            Activity.filter(pk=id_activity).update(
+                name=activity_name,
+                description=activity_description,
+                start=activity_start,
+                location=activity_location)
+            return '1'
+        except:
+            return "Error"
+
     def create_accommodation(id_adventure, accomodation_name, accomodation_location, accomodation_date_start, accomodation_date_end):
         try:
             adv = Adventure.objects.filter(pk=id_adventure)
@@ -57,6 +79,17 @@ class AdventureController():
         except:
             return "Error"
 
+    def edit_accommodation(id_accommodation, accomodation_name, accomodation_location, accomodation_date_start, accomodation_date_end):
+        try:
+            Accommodation.objects.filter(pk=id_accommodation).update(
+                    name=accomodation_name,
+                    location=accomodation_location,
+                    date_start=accomodation_date_start,
+                    date_end=accomodation_date_end,
+                    adventure=adv)
+            return "Success"
+        except:
+            return "Error"
 
     def create_transport(id_adventure, transport_name, transport_info, type, departure, arrival, date_time, location):
         try:
@@ -71,8 +104,21 @@ class AdventureController():
                     is_departure=departure,
                     is_arrival=arrival,
                     departure_date=date_time,
-                    departure_location=location,
-                    adventure=adv)
+                    departure_location=location)
+            return "Success"
+        except:
+            return "Error"
+
+    def edit_transport(id_adventure, transport_name, transport_info, type, departure, arrival, date_time, location):
+        try:
+            Transport.objects.filter(pk=id_adventure).update(
+                    name=transport_name,
+                    information=transport_info,
+                    transport_type=type,
+                    is_departure=departure,
+                    is_arrival=arrival,
+                    departure_date=date_time,
+                    departure_location=location)
             return "Success"
         except:
             return "Error"
@@ -111,19 +157,24 @@ class AdventureController():
         except:
             return "Error"
 
+    def get_all_adventures():
+        adventures = Adventure.objects.all()
+        adventures = serializers.serialize('json',adventures)
+        return adventures
+
     def get_activities(id_adventure):
         activities = Activity.objects.filter(adventure=id_adventure)
-        serializers.serialize('json',activities)
+        activities = serializers.serialize('json',activities)
         return activities
 
     def get_accomodations(id_adventure):
         accommodations = Accommodation.objects.filter(adventure=id_adventure)
-        serializers.serialize('json',accommodations)
+        accommodations = serializers.serialize('json',accommodations)
         return accommodations
 
     def get_transports(id_adventure):
         transports = Transport.objects.filter(adventure=id_adventure)
-        serializers.serialize('json',transports)
+        transports = serializers.serialize('json',transports)
         return transports
 
     def delete_adventure(id):

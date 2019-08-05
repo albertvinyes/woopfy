@@ -3,7 +3,7 @@ from django.test import TestCase
 
 class AdventureControllerTests(TestCase):
     # TODO: Add 4 edit tests and filter tests
- 
+
     def setUp(self):
         adv_name = "Great test adventure"
         adv_description = "Enjoy a beer while watching Adventure Time"
