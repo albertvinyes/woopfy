@@ -9,7 +9,7 @@ class CityController():
         query = City.objects.filter(name__istartswith=lookup_str)
         # fields we want to retrieve from the city
         if (not verbose):
-            fields = ('name','display_name', 'population')
+            fields = ('name','display_name', 'population').order_by('-population')
             serialized_query = serialize('json', query, fields=fields)
         else:
             serialized_query = serialize('json', query)
