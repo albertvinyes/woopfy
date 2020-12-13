@@ -1,5 +1,7 @@
 from adventures.controller import AdventureController
 from django.test import TestCase
+from django.utils import timezone
+import datetime
 
 class AdventureControllerTests(TestCase):
     # TODO: Add 4 edit tests and filter tests
@@ -39,7 +41,7 @@ class AdventureControllerTests(TestCase):
         activity_name = "a"
         activity_description = "a"
         activity_start = '2018-10-07 21:48:31'
-        activity_location = '2018-10-07 21:48:31'
+        activity_location = 'Ovella Negre'
         result = AdventureController.create_activity(
                                         id_adventure,
                                         activity_name,
@@ -48,7 +50,7 @@ class AdventureControllerTests(TestCase):
                                         activity_location)
         self.assertIs(result, "Success")
 
-    def test_create_activity(self):
+    def test_create_accomodation(self):
         id_adventure = self.id
         accomodation_name = "fancy hotel"
         accomodation_location = "barcelona"
@@ -62,14 +64,14 @@ class AdventureControllerTests(TestCase):
                                         accomodation_date_end)
         self.assertIs(result, "Success")
 
-    def test_create_activity(self):
+    def test_create_transort(self):
         id_adventure = self.id
         transport_name = "slow transport"
         transport_info = "ticket 123623623{38}"
         type = '1'
         departure = True
         arrival = False
-        date_time = '2018-10-07 21:48:31'
+        date_time = datetime.datetime.now(tz=timezone.utc)
         location = "Sants Estació"
         result = AdventureController.create_transport(
                                         id_adventure,

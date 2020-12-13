@@ -104,7 +104,8 @@ class AdventureController():
                     is_departure=departure,
                     is_arrival=arrival,
                     departure_date=date_time,
-                    departure_location=location)
+                    departure_location=location,
+                    adventure=adv)
             return "Success"
         except:
             return "Error"
