@@ -1,9 +1,11 @@
 from django.db import models
 from django.core import serializers
+from django.core.serializers import serialize
 from accommodations.models import Accommodation
 from activities.models import Activity
 from transports.models import Transport
 from adventures.models import Adventure
+from cities_app.models import City
 
 class AdventureController():
 
@@ -177,6 +179,17 @@ class AdventureController():
         transports = Transport.objects.filter(adventure=id_adventure)
         transports = serializers.serialize('json',transports)
         return transports
+
+    def get_cities_starting_with(lookup_str, verbose):
+        # name__istartswith is case insensitive, it matches when the city name starts with the sring
+        query = City.objects.filter(name__istartswith=lookup_str).order_by('-population')
+        # fields we want to retrieve from the city
+        if (not verbose):
+            fields = ('name','display_name', 'population')
+            serialized_query = serialize('json', query, fields=fields)
+        else:
+            serialized_query = serialize('json', query)
+        return serialized_query
 
     def delete_adventure(id):
         adv = Adventure.objects.filter(pk=id)
