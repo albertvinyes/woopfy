@@ -1,11 +1,15 @@
-#Installation
+# Installation
+Follow the instructions carefully in order to setup the project with great success!
+
 ## Linux Packages
 You will need to install Python 3.8, Python's dev tools and Django 3.0. You can run the following commands on Ubuntu:
 ```
-sudo apt-get install python3
-sudo apt-get install python3-pip
-sudo apt-get install python3-pip
-sudo apt-get install python3.8-venv
+sudo apt udpate
+sudo apt install postgresql postgresql-contrib
+sudo apt install python3
+sudo apt install python3-pip
+sudo apt install python3-pip
+sudo apt install python3.8-venv
 ```
 ## Project installation
 After that, clone the repository and create a virtual environment inside the woopfy folder.
