@@ -2,7 +2,7 @@
 Follow the instructions carefully in order to setup the project with great success!
 
 ## Linux Packages
-You will need to install Python 3.8, Python's dev tools and Django 3.0. You can run the following commands on Ubuntu:
+You will need to install Python 3.8, Python's dev tools,PostgreSQL and Django 3.0. You can run the following commands on Ubuntu:
 ```
 sudo apt udpate
 sudo apt install postgresql postgresql-contrib
@@ -21,12 +21,13 @@ Activate environment and install project dependencies into project dependencies.
 ```
 source venv/bin/activate
 ```
-Now install and setup your DB with PostgreSQL and follow the django cities light installation guide here:
+Now follow the django cities light installation guide here:
 https://django-cities-light.readthedocs.io/en/latest/index.html
 
 After that install the project dependencies. If the following command runs into issues use the requirementsTest.txt file instead.
-$ pip install -r requirements.txt
-
+```
+pip install -r requirements.txt
+```
 # Prepare the project DB and super admin
 ```
 cd project/
