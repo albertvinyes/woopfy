@@ -1,1 +1,2 @@
-# woopfy
+# Woopfy Repository
+You can find the installation notes in the project folder.
