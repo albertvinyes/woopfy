@@ -29,6 +29,7 @@ After that install the project dependencies. If the following command runs into 
 pip install -r requirements.txt
 ```
 # Prepare the project DB and super admin
+You can refer to the helper folder to find useful scripts to create your database and user. Make sure that the settings.py config matches the database name and user credentials. 
 ```
 cd project/
 python manage.py makemigrations
