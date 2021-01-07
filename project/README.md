@@ -39,7 +39,7 @@ python manage.py createsuperuser
 
 Congrats! If everything went well you can now run tests and start playing with the software.
 
-# Run tests and start the webserter
+# Run tests and start the webserver
 ```
 python manage.py test -v 2
 python manage.py runserver
