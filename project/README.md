@@ -26,12 +26,12 @@ https://django-cities-light.readthedocs.io/en/latest/index.html
 
 After that install the project dependencies. If the following command runs into issues use the requirementsTest.txt file instead.
 ```
+cd project/
 pip install -r requirements.txt
 ```
 # Prepare the project DB and super admin
 You can find useful commands to create your database and user in the helpers folder on the root level of the repo. Make sure that the settings.py config matches the database name and user credentials. 
 ```
-cd project/
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
