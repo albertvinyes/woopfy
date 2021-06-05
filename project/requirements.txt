@@ -2,7 +2,7 @@ asgiref==3.3.1
 auditlog==0.0.5
 certifi==2018.4.16
 chardet==3.0.4
-Django==3.1.4
+Django==3.1.9
 django-autoslug==1.9.8
 django-autoslug-iplweb==1.9.4.dev0
 django-cities-light==3.8.1
